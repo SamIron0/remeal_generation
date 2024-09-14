@@ -1,6 +1,6 @@
 import random
 from collections import Counter
-from src.services.database_service import supabase
+from services.database_service import supabase
 
 class DiversityEnforcer:
     def __init__(self):

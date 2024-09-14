@@ -1,41 +1,41 @@
 import requests
-from src.config import config
+from config import config
 import json
-from src.services.diversity_enforcer import DiversityEnforcer
+from services.diversity_enforcer import DiversityEnforcer
+import re
 
-diversity_enforcer = DiversityEnforcer()
+# diversity_enforcer = DiversityEnforcer()
+
 
 def call_llm(prompt: str) -> str:
     response = requests.post(
         "https://api.deepinfra.com/v1/openai/chat/completions",
         headers={
             "Content-Type": "application/json",
-            "Authorization": f"Bearer {config.DEEP_INFRA_API_KEY}"
+            "Authorization": f"Bearer {config.DEEP_INFRA_API_KEY}",
         },
         json={
             "model": "meta-llama/Meta-Llama-3.1-70B-Instruct",
             "messages": [
-                {"role": "system", "content": "You are a helpful assistant."},
-                {"role": "user", "content": prompt}
+                {
+                    "role": "system",
+                    "content": "You are a professional chef specializing in American cuisine. Reply with only JSON and no other character",
+                },
+                {"role": "user", "content": prompt},
             ],
-            "response_format": { "type": "json_object" }
-        }
+            "response_format": {"type": "json_object"},
+        },
     )
     response.raise_for_status()
-    return response.json()['choices'][0]['message']['content']
+    content = response.json()["choices"][0]["message"]["content"]
+    return content
+
 
 async def generate_recipe(parameters: dict) -> dict:
-    await diversity_enforcer.analyze_recent_recipes()
-    adjusted_params = diversity_enforcer.adjust_generation_params(parameters)
-
-    prompt = f"""Generate a unique American recipe based on the following parameters:
-    Complexity: {adjusted_params['complexity']}
-    Cuisine Style: American
-    Dietary Focus: {adjusted_params['dietary_focus']}
-    Cooking Method: {adjusted_params['cooking_method']}
-    Season: {adjusted_params['season']}
-    Ingredients to include: {', '.join(adjusted_params['ingredients'])}
-    Return a JSON object with the following structure:
+    prompt = f"""Generate a unique recipe based on the following parameters:
+    Name: {parameters['name']}
+    Do not include optional ingredients! 
+    Return only a JSON object with the following structure, :
     {{
         "name": "Recipe Name",
         "description": "Brief description",
@@ -44,9 +44,35 @@ async def generate_recipe(parameters: dict) -> dict:
         "cook_time": number (in minutes),
         "prep_time": number (in minutes),
         "servings": number,
-        "cuisine": "American",
-        "dietary_tags": ["tag1", "tag2", ...]
-    }}"""
-
+    }}."""
     response = call_llm(prompt)
-    return json.loads(response)
+    # print("llm_raw" + response)
+    cleaned_response = response.strip()
+
+    # Try to parse the response as JSON
+    try:
+        print("LLM recipe: " + cleaned_response)
+        return json.loads(cleaned_response)
+    except json.JSONDecodeError:
+        # If parsing fails, attempt to fix common issues
+        fixed_response = clean_json_string(cleaned_response)
+        # print("fixed" + fixed_response)
+        try:
+            return json.loads(fixed_response)
+        except json.JSONDecodeError as e:
+            print(f"JSON parsing error: {e}")
+            raise
+
+
+def clean_json_string(s: str) -> str:
+    # Remove any leading/trailing non-JSON characters
+    s = re.sub(r"^[^{]*", "", s)
+    s = re.sub(r"[^}]*$", "", s)
+
+    # Replace single quotes with double quotes
+    s = s.replace("'", '"')
+
+    # Ensure property names are in double quotes
+    s = re.sub(r"(\w+)(?=\s*:)", r'"\1"', s)
+
+    return s

@@ -1,4 +1,4 @@
-from src.models.recipe import Recipe
+from models.recipe import Recipe
 
 def validate_recipe(recipe: Recipe):
     if len(recipe.ingredients) < 2:
