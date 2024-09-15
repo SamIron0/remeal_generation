@@ -34,7 +34,7 @@ def call_llm(prompt: str) -> str:
 async def generate_recipe(parameters: dict) -> dict:
     prompt = f"""Generate a unique recipe based on the following parameters:
     Name: {parameters['name']}
-    Do not include optional ingredients! 
+    Do not include optional ingredients! Include measurement wherever possible
     Return only a JSON object with the following structure, :
     {{
         "name": "Recipe Name",
@@ -46,22 +46,14 @@ async def generate_recipe(parameters: dict) -> dict:
         "servings": number,
     }}."""
     response = call_llm(prompt)
-    # print("llm_raw" + response)
     cleaned_response = response.strip()
 
-    # Try to parse the response as JSON
     try:
-        print("LLM recipe: " + cleaned_response)
-        return json.loads(cleaned_response)
-    except json.JSONDecodeError:
-        # If parsing fails, attempt to fix common issues
         fixed_response = clean_json_string(cleaned_response)
-        # print("fixed" + fixed_response)
-        try:
-            return json.loads(fixed_response)
-        except json.JSONDecodeError as e:
-            print(f"JSON parsing error: {e}")
-            raise
+        return json.loads(fixed_response)
+    except json.JSONDecodeError as e:
+        print(f"JSON parsing error")
+        raise
 
 
 def clean_json_string(s: str) -> str:
@@ -74,5 +66,11 @@ def clean_json_string(s: str) -> str:
 
     # Ensure property names are in double quotes
     s = re.sub(r"(\w+)(?=\s*:)", r'"\1"', s)
+
+    # Remove any newlines and extra spaces
+    s = re.sub(r"\s+", " ", s)
+
+    # Remove any trailing commas before closing braces or brackets
+    s = re.sub(r",\s*([}\]])", r"\1", s)
 
     return s
