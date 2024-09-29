@@ -15,7 +15,6 @@ class SmartControlSystem:
         self.cooking_methods = ['baking', 'grilling', 'frying', 'boiling', 'steaming', 'slow-cooking', 'any']
 
     def adjust_parameters(self):
-        # Randomly adjust parameters to create variety
         self.parameters['complexity'] = random.choice(self.complexity_options)
         self.parameters['cuisine_style'] = random.choice(self.cuisine_styles)
         self.parameters['dietary_focus'] = random.choice(self.dietary_focuses)

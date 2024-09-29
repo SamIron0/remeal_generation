@@ -6,17 +6,15 @@ from utils.file_reader import read_american_recipes
 
 async def generate_and_save_recipe(recipe_name):
     try:
-        recipe, embedding = await create_recipe(recipe_name)
+        recipe, embedding, categories = await create_recipe(recipe_name)
         if recipe is None:
             return None
 
         print(f"Recipe created: {recipe.name}")
 
-        # Convert the recipe object to a dictionary and include the embedding
         recipe_data = recipe.dict()
         recipe_data['embedding'] = embedding.tolist()
-
-        # Call the recipe ingestion microservice
+        recipe_data['categories'] = categories
         ingestion_result = await ingest_recipe(recipe_data)
 
         if ingestion_result["success"]:
@@ -34,10 +32,8 @@ async def generate_and_save_recipe(recipe_name):
 
 async def ingest_recipe(recipe_data):
     try:
-        # Make an HTTP POST request to the Node.js microservice
-        # this microservice saves the recipe to the database and indexes the ingredients
         response = requests.post("http://localhost:3000/ingest", json=recipe_data)
-        response.raise_for_status()  # Raise an exception for bad status codes
+        response.raise_for_status() 
         return response.json()
     except requests.RequestException as e:
         print(f"Error calling recipe ingestion service: {e}")
