@@ -1,10 +1,10 @@
-# American Recipe Generator
+# Recipe Generator
 
-This project is an AI-powered American recipe generator that creates unique recipes based on various parameters and ensures diversity in the generated recipes.
+This project is an AI-powered recipe generator that creates unique recipes based on various parameters and ensures diversity in the generated recipes.
 
 ## Features
 
-- Generates unique American recipes
+- Generates unique recipes
 - Classifies recipes based on dietary restrictions
 - Ensures recipe diversity using a smart control system
 - Embeds recipes for similarity comparison
