@@ -1,16 +1,50 @@
-# Recipe Generator
+# American Recipe Generator
 
-This is a Python-based, production-level recipe generator system that uses the DeepInfra LLM API to generate unique recipes based on given ingredients, cuisine, and dietary restrictions.
+This project is an AI-powered American recipe generator that creates unique recipes based on various parameters and ensures diversity in the generated recipes.
 
-## Setup
+## Features
+
+- Generates unique American recipes
+- Classifies recipes based on dietary restrictions
+- Ensures recipe diversity using a smart control system
+- Embeds recipes for similarity comparison
+- Integrates with a Supabase database for recipe storasge
+
+## Installation
 
 1. Clone the repository
-2. Create a virtual environment: `python -m venv venv`
-3. Activate the virtual environment:
-   - On Windows: `venv\Scripts\activate`
-   - On Unix or MacOS: `source venv/bin/activate`
-4. Install dependencies: `pip install -r requirements.txt`
-5. Create a `.env` file with your API keys and database URLs
-6. Run the system: `python src/main.py`
+2. Install the required dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+3. Set up environment variables:
+
+Create a `.env` file in the root directory and add the following variables:
+
+```
+DEEP_INFRA_API_KEY=your_deep_infra_api_key
+SUPABASE_URL=your_supabase_url
+SUPABASE_KEY=your_supabase_key
+REDIS_URL=your_redis_url
+```
 
 ## Usage
+
+To generate recipes, run the main script:
+
+```bash
+python main.py
+```
+
+This will start the recipe generation process. The script will continue generating recipes until you stop it manually (Ctrl+C).
+
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+[MIT License](LICENSE)

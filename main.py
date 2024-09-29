@@ -4,7 +4,7 @@ from services.recipe_service import create_recipe
 from utils.file_reader import read_american_recipes
 
 
-async def generate_and_save_recipe(recipe_name):
+async def generate_recipe(recipe_name):
     try:
         recipe, embedding, categories = await create_recipe(recipe_name)
         if recipe is None:
@@ -45,7 +45,7 @@ async def main():
     recipes = read_american_recipes()
     try:
         for recipe_name in recipes:
-            await generate_and_save_recipe(recipe_name)
+            await generate_recipe(recipe_name)
 
     except KeyboardInterrupt:
         print("\nRecipe generation stopped.")

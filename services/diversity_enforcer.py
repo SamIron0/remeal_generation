@@ -41,7 +41,7 @@ class DiversityEnforcer:
         return [ing for ing, _ in sorted(weighted_ingredients, key=lambda x: x[1] * random.random(), reverse=True)[:5]]
 
     def select_diverse_cooking_method(self, base_method):
-        if random.random() < 0.7:  # 70% chance to keep the base method
+        if random.random() < 0.7: 
             return base_method
         return random.choices(list(self.cooking_method_weights.keys()), 
                               weights=list(self.cooking_method_weights.values()))[0]
