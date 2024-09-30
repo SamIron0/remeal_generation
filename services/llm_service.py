@@ -2,7 +2,6 @@ import requests
 from config import config
 import json
 from models.recipe import Recipe
-from services.diversity_enforcer import DiversityEnforcer
 import re
 from typing import List
 
@@ -54,9 +53,9 @@ def call_llm(prompt: str) -> str:
     return content
 
 
-async def generate_recipe(parameters: dict) -> dict:
+async def generate_recipe(name: dict) -> dict:
     prompt = f"""Generate a unique recipe based on the following parameters:
-    Name: {parameters['name']}
+    Name: {name}
     Do not include optional ingredients! Include measurement wherever possible
     Return only a JSON object with the following structure, :
     {{
@@ -100,23 +99,3 @@ def clean_json_string(s: str) -> str:
 
     return s
 
-
-async def classify_recipe_dietary_restrictions(recipe: Recipe) -> List[str]:
-    system_prompt = f"""You are a helpful assistant that classifies recipes based on dietary restrictions. 
-    Consider these categories: vegetarian, vegan, gluten-free, dairy-free, nut-free, low-carb, keto, paleo, pescatarian, halal.
-    Only return categories that apply, separated by commas, no extra text.
-    """
-    prompt = f"""Classify the following recipe based on dietary restrictions. 
-    Consider these categories: vegetarian, vegan, gluten-free, dairy-free, nut-free, low-carb, keto, paleo, pescatarian, halal.
-    Only return categories that apply, separated by commas, no extra text.
-
-    Recipe Name: {recipe.name}
-    
-    Ingredients: {', '.join(recipe.ingredients)}
-    Instructions: {' '.join(recipe.instructions)}
-
-    Return only the applicable categories, nothing else."""
-
-    response = call_llm(prompt)
-    categories = [cat.strip() for cat in response.split(',') if cat.strip()]
-    return categories

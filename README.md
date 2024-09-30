@@ -5,8 +5,6 @@ This project is an AI-powered recipe generator that creates unique recipes based
 ## Features
 
 - Generates unique recipes
-- Classifies recipes based on dietary restrictions
-- Ensures recipe diversity using a smart control system
 - Embeds recipes for similarity comparison
 - Integrates with a Supabase database for recipe storasge
 
@@ -27,7 +25,6 @@ Create a `.env` file in the root directory and add the following variables:
 DEEP_INFRA_API_KEY=your_deep_infra_api_key
 SUPABASE_URL=your_supabase_url
 SUPABASE_KEY=your_supabase_key
-REDIS_URL=your_redis_url
 ```
 
 ## Usage

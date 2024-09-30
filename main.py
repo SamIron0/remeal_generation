@@ -6,15 +6,13 @@ from utils.file_reader import read_american_recipes
 
 async def generate_recipe(recipe_name):
     try:
-        recipe, embedding, categories = await create_recipe(recipe_name)
+        recipe = await create_recipe(recipe_name)
         if recipe is None:
             return None
 
         print(f"Recipe created: {recipe.name}")
 
         recipe_data = recipe.dict()
-        recipe_data['embedding'] = embedding.tolist()
-        recipe_data['categories'] = categories
         ingestion_result = await ingest_recipe(recipe_data)
 
         if ingestion_result["success"]:
