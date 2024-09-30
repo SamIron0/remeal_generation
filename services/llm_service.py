@@ -18,7 +18,7 @@ def call_llm_with_json(prompt: str) -> str:
             "messages": [
                 {
                     "role": "system",
-                    "content": "You are a professional chef specializing in American cuisine. Reply with only JSON and no other character",
+                    "content": "You are a professional chef. Reply with only JSON and no other character",
                 },
                 {"role": "user", "content": prompt},
             ],
@@ -73,7 +73,6 @@ async def generate_recipe(name: dict) -> dict:
     for attempt in range(max_retries + 1):
         try:
             fixed_response = clean_json_string(cleaned_response)
-            print('fixed_response', fixed_response)
             return json.loads(fixed_response)
         except json.JSONDecodeError as e:
             if attempt < max_retries:

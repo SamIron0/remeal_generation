@@ -10,13 +10,9 @@ model = AutoModel.from_pretrained("bert-base-uncased")
 
 
 async def create_recipe(recipe_name: str) -> Tuple[Recipe, np.ndarray, List[str]]:
-    print(f"Starting to create recipe: {recipe_name}")
 
     try:
-        print("Generating recipe...")
         generated_recipe = await generate_recipe(recipe_name)
-        print(f"Generated recipe: {generated_recipe}")
-
         recipe = Recipe(**generated_recipe)
         return recipe
     except Exception as e:

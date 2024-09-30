@@ -20,7 +20,6 @@ Onion Rings
 Beef Stir Fry
 Sushi
 Pad Thai
-General Tso's Chicken
 Beef and Broccoli
 Chicken Teriyaki
 Fish and Chips
@@ -74,7 +73,6 @@ Jambalaya
 Gumbo
 Po' Boy Sandwich
 Biscuits and Gravy
-Chicken and Waffles
 Eggs Benedict
 Omelet
 Hash Browns
@@ -159,3 +157,7 @@ Beef with Black Bean Sauce
 Twice-Cooked Pork
 Ma La Xiang Guo
 Dan Dan Noodles
+
+// start here
+General Tso's Chicken
+Chicken and Waffles

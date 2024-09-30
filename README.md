@@ -6,7 +6,7 @@ This project is an AI-powered recipe generator that creates unique recipes based
 
 - Generates unique recipes
 - Embeds recipes for similarity comparison
-- Integrates with a Supabase database for recipe storasge
+- Utilizes open source AI models for recipe creation and analysis
 
 ## Installation
 
@@ -36,7 +36,6 @@ python main.py
 ```
 
 This will start the recipe generation process. The script will continue generating recipes until you stop it manually (Ctrl+C).
-
 
 ## Contributing
 

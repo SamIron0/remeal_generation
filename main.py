@@ -1,7 +1,7 @@
 import asyncio
 import requests
 from services.recipe_service import create_recipe
-from utils.file_reader import read_american_recipes
+from utils.file_reader import read_recipes
 
 
 async def generate_recipe(recipe_name):
@@ -39,8 +39,7 @@ async def ingest_recipe(recipe_data):
 
 
 async def main():
-    print("Starting recipe generation. Press Ctrl+C to stop.")
-    recipes = read_american_recipes()
+    recipes = read_recipes()
     try:
         for recipe_name in recipes:
             await generate_recipe(recipe_name)
