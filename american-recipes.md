@@ -34,7 +34,6 @@ Chicken Parmesan
 Beef Stew
 Clam Chowder
 Chicken Pot Pie
-Pulled Pork Sandwich
 Cobb Salad
 Chicken Fajitas
 Apple Pie
@@ -66,7 +65,6 @@ Greek Salad
 Chicken Kebabs
 Beef Kebabs
 Shrimp Scampi
-Lobster Roll
 Crab Cakes
 Fried Catfish
 Jambalaya
@@ -115,8 +113,6 @@ Vindaloo
 Samosas
 Naan Bread
 Garlic Naan
-Raita
-Mango Lassi
 Gulab Jamun
 Kheer
 Chicken Jalfrezi
@@ -157,7 +153,81 @@ Beef with Black Bean Sauce
 Twice-Cooked Pork
 Ma La Xiang Guo
 Dan Dan Noodles
+Mango Lassi
+Raita
 
 // start here
-General Tso's Chicken
-Chicken and Waffles
+
+Grilled Cheese Sandwich
+Tuna Melt
+Cuban Sandwich
+Italian Sub
+Egg Salad Sandwich
+Chicken Salad Sandwich
+Turkey Club Sandwich
+Pastrami on Rye
+Roast Beef Sandwich
+Veggie Sandwich
+Pulled Pork Sandwich
+French Dip
+Muffuletta
+Patty Melt
+Lobster Roll
+Bánh Mì
+Caprese Sandwich
+Grilled Chicken Sandwich
+Fried Chicken Sandwich
+Breakfast Sandwich
+Sloppy Joe
+Submarine Sandwich (Sub)
+Panini
+Peanut Butter and Banana Sandwich
+Avocado Toast
+Croque Monsieur
+Croque Madame
+Portobello Mushroom Sandwich
+California Club Sandwich
+BBQ Wings
+Honey Garlic Wings
+Teriyaki Wings
+Lemon Pepper Wings
+Garlic Parmesan Wings
+Sweet and Spicy Wings
+Cajun Wings
+Korean Fried Wings
+Jerk Wings
+Salt and Vinegar Wings
+Mango Habanero Wings
+Sriracha Wings
+Dry Rub Wings
+Honey Mustard Wings
+Thai Chili Wings
+Margherita Pizza
+Pepperoni Pizza
+Cheese Pizza
+Supreme Pizza
+Meat Lovers Pizza
+Vegetarian Pizza
+Hawaiian Pizza
+BBQ Chicken Pizza
+Buffalo Chicken Pizza
+Four Cheese Pizza
+Mushroom Pizza
+Sausage Pizza
+White Pizza (Pizza Bianca)
+Spinach and Feta Pizza
+Bacon and Egg Pizza
+Pesto Pizza
+Taco Pizza
+Mediterranean Pizza
+Chicken Alfredo Pizza
+Philly Cheesesteak Pizza
+Seafood Pizza
+Garlic and Olive Oil Pizza
+Prosciutto and Arugula Pizza
+Quattro Stagioni Pizza
+Anchovy Pizza
+Eggplant Parmesan Pizza
+Greek Pizza
+Truffle Pizza
+Breakfast Pizza

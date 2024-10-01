@@ -8,7 +8,7 @@ with open("american-recipes.md", "r") as file:
 recipes = [line.strip() for line in content.split("\n") if line.strip()]
 
 
-def find_related_recipes(recipes, lower_threshold=70, upper_threshold=100):
+def find_related_recipes(recipes, lower_threshold=80, upper_threshold=100):
     related_pairs = []
     for a, b in itertools.combinations(recipes, 2):
         similarity = fuzz.ratio(a.lower(), b.lower())
