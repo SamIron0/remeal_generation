@@ -1,5 +1,5 @@
 def read_recipes():
-    with open('american-recipes.md', 'r') as file:
+    with open('recipes.md', 'r') as file:
         content = file.readlines()
     
     start_index = next((i for i, line in enumerate(content) if '// start here' in line), None)

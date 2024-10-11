@@ -2,7 +2,7 @@ import re
 from fuzzywuzzy import fuzz
 import itertools
 
-with open("american-recipes.md", "r") as file:
+with open("recipes.md", "r") as file:
     content = file.read()
 
 recipes = [line.strip() for line in content.split("\n") if line.strip()]
@@ -40,7 +40,7 @@ for pair in related_recipes:
 
     print()
 
-    with open("american-recipes.md", "w") as file:
+    with open("recipes.md", "w") as file:
         for recipe in recipes:
             file.write(f"{recipe}\n")
 
