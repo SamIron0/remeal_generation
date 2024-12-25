@@ -1,6 +1,6 @@
 # Recipe Generator
 
-This project is an AI-powered recipe generator that creates unique recipes based on provided list of recipe names.
+This project is an AI-powered recipe generator that creates unique recipes for [remeal](https://github.com/SamIron0/remeal_ui) based on provided list of recipe names.
 
 ## Installation
 
