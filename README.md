@@ -2,11 +2,6 @@
 
 This project is an AI-powered recipe generator that creates unique recipes based on provided list of recipe names.
 
-## Features
-
-- Generates unique recipes using llama
-- Embeds recipes for similarity comparison
-
 ## Installation
 
 1. Clone the repository
