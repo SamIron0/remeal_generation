@@ -2,15 +2,8 @@ from models.recipe import Recipe
 from services.llm_service import generate_recipe
 import numpy as np
 from typing import Tuple, List
-from transformers import AutoTokenizer, AutoModel
-import torch
-
-tokenizer = AutoTokenizer.from_pretrained("bert-base-uncased")
-model = AutoModel.from_pretrained("bert-base-uncased")
-
 
 async def create_recipe(recipe_name: str) -> Tuple[Recipe, np.ndarray, List[str]]:
-
     try:
         generated_recipe = await generate_recipe(recipe_name)
         recipe = Recipe(**generated_recipe)

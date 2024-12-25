@@ -1,12 +1,11 @@
 # Recipe Generator
 
-This project is an AI-powered recipe generator that creates unique recipes based on various parameters and ensures diversity in the generated recipes.
+This project is an AI-powered recipe generator that creates unique recipes based on provided list of recipe names.
 
 ## Features
 
-- Generates unique recipes
+- Generates unique recipes using llama
 - Embeds recipes for similarity comparison
-- Utilizes open source AI models for recipe creation and analysis
 
 ## Installation
 
@@ -18,14 +17,7 @@ pip install -r requirements.txt
 ```
 
 3. Set up environment variables:
-
-Create a `.env` file in the root directory and add the following variables:
-
-```
-DEEP_INFRA_API_KEY=your_deep_infra_api_key
-SUPABASE_URL=your_supabase_url
-SUPABASE_KEY=your_supabase_key
-```
+   Create a `.env.local` file in the root directory and add the necessary environment variables (refer to `.env.example`).
 
 ## Usage
 
@@ -35,7 +27,9 @@ To generate recipes, run the main script:
 python main.py
 ```
 
-This will start the recipe generation process. The script will continue generating recipes until you stop it manually (Ctrl+C).
+This will start the recipe generation process using by reading all recipe names in recipes.md and generating complete recipes using llama. The script will continue generating recipes until you stop it manually (Ctrl+C).
+
+After the generation of each recipe, the ingestion micro service is called to save and index the recipe, so you must have the recipe ingestion service already running before running the recipe generator.
 
 ## Contributing
 

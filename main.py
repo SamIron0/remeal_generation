@@ -1,8 +1,8 @@
-import asyncio
 import requests
+import asyncio
+from config import config
 from services.recipe_service import create_recipe
-from utils.file_reader import read_recipes
-
+from utils.file_io import read_recipes
 
 async def generate_recipe(recipe_name):
     try:
@@ -30,7 +30,7 @@ async def generate_recipe(recipe_name):
 
 async def ingest_recipe(recipe_data):
     try:
-        response = requests.post("http://localhost:3000/ingest", json=recipe_data)
+        response = requests.post(config.INGESTION_URL, json=recipe_data)
         response.raise_for_status() 
         return response.json()
     except requests.RequestException as e:

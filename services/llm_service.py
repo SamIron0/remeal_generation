@@ -1,10 +1,7 @@
 import requests
 from config import config
 import json
-from models.recipe import Recipe
 import re
-from typing import List
-
 
 def call_llm_with_json(prompt: str) -> str:
     response = requests.post(
